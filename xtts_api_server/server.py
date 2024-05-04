@@ -77,7 +77,7 @@ if USE_CACHE:
     logger.info("You have enabled caching, this option enables caching of results, your results will be saved and if there is a repeat request, you will get a file instead of generation")
 
 # Add CORS middleware 
-origins = ["*"]
+origins = ["localhost"]
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
