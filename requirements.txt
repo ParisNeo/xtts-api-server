@@ -12,7 +12,7 @@ torchaudio
 uvicorn
 cutlet
 fugashi[unidic-lite]
-spacy
+spacy=3.3.2
 tts
 transformers==4.36.2
 uuid
