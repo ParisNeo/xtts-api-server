@@ -249,7 +249,12 @@ async def tts_stream(request: Request, text: str = Query(), speaker_wav: str = Q
             yield chunk
 
     return StreamingResponse(generator(), media_type='audio/x-wav')
-
+@app.post("/stop_streaming/")
+async def stop_streaming(request: Request):
+    global stream
+    if stream.is_playing() and not STREAM_PLAY_SYNC:
+        stream.stop()
+            
 @app.post("/tts_to_audio/")
 async def tts_to_audio(request: SynthesisRequest, background_tasks: BackgroundTasks):
     if STREAM_MODE or STREAM_MODE_IMPROVE:
@@ -342,4 +347,4 @@ async def tts_to_file(request: SynthesisFileRequest):
         raise HTTPException(status_code=500, detail=f"An error occurred: {str(e)}")
 
 if __name__ == "__main__":
-    uvicorn.run(app,host="0.0.0.0",port=8002)
+    uvicorn.run(app,host="localhost",port=8020)

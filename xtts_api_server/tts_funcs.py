@@ -48,7 +48,7 @@ supported_languages = {
 }
 
 default_tts_settings = {
-    "temperature" : 0.75,
+    "temperature" : 0.1,
     "length_penalty" : 1.0,
     "repetition_penalty": 5.0,
     "top_k" : 50,
