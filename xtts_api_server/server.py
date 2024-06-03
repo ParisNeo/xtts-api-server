@@ -254,7 +254,7 @@ async def stop_streaming(request: Request):
     global stream
     if stream.is_playing() and not STREAM_PLAY_SYNC:
         stream.stop()
-            
+
 @app.post("/tts_to_audio/")
 async def tts_to_audio(request: SynthesisRequest, background_tasks: BackgroundTasks):
     if STREAM_MODE or STREAM_MODE_IMPROVE:
@@ -276,6 +276,7 @@ async def tts_to_audio(request: SynthesisRequest, background_tasks: BackgroundTa
             engine.language = request.language.lower()
            
             # Start streaming, works only on your local computer.
+            logger.info(f"Received text:\n{request.text}")
             stream.feed(request.text)
             play_stream(stream,language)
 
